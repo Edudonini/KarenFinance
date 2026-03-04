@@ -29,13 +29,13 @@
 
 ### Supabase
 
-- [ ] Criar projeto no Supabase Dashboard
+- [x] Criar projeto no Supabase Dashboard
 - [x] Instalar `@supabase/supabase-js` e `@supabase/ssr`
 - [x] Configurar variáveis de ambiente (`.env.local`)
 - [x] Criar client Supabase (browser)
 - [x] Criar client Supabase (server)
 - [x] Criar middleware de autenticação (`middleware.ts`)
-- [ ] Gerar tipos TypeScript do Supabase (`supabase gen types`)
+- [x] Gerar tipos TypeScript do Supabase (`supabase gen types`)
 
 ### PWA
 
@@ -54,52 +54,52 @@
 
 ### Tabela `profiles`
 
-- [ ] Criar migration: tabela `profiles` (id, display_name, salary, partner_id, avatar_url, created_at, updated_at)
-- [ ] Criar trigger `handle_new_user` para inserir profile automaticamente
-- [ ] Criar RLS: usuário lê/edita próprio profile
-- [ ] Criar RLS: usuário lê profile do parceiro (via `partner_id`)
-- [ ] Criar index em `partner_id`
+- [x] Criar migration: tabela `profiles` (id, display_name, salary, partner_id, avatar_url, created_at, updated_at)
+- [x] Criar trigger `handle_new_user` para inserir profile automaticamente
+- [x] Criar RLS: usuário lê/edita próprio profile
+- [x] Criar RLS: usuário lê profile do parceiro (via `partner_id`)
+- [x] Criar index em `partner_id`
 
 ### Tabela `categories`
 
-- [ ] Criar migration: tabela `categories` (id, name, icon, color, type: fixed/variable, budget_limit, user_id, created_at)
-- [ ] Criar RLS: usuário acessa suas categorias + categorias do parceiro
-- [ ] Seed de categorias padrão (Aluguel, Internet, Lazer, Saúde, Transporte, Açougue, Hortifruti, Mercado)
-- [ ] Criar index em `user_id`
+- [x] Criar migration: tabela `categories` (id, name, icon, color, type: fixed/variable, budget_limit, user_id, created_at)
+- [x] Criar RLS: usuário acessa suas categorias + categorias do parceiro
+- [x] Seed de categorias padrão (Aluguel, Internet, Lazer, Saúde, Transporte, Açougue, Hortifruti, Mercado)
+- [x] Criar index em `user_id`
 
 ### Tabela `transactions`
 
-- [ ] Criar migration: tabela `transactions` (id, description, amount_cents, category_id, user_id, date, type: income/expense, is_installment, total_installments, current_installment, installment_group_id, receipt_id, created_at, updated_at)
-- [ ] Criar RLS: usuário acessa suas transações + transações do parceiro
-- [ ] Criar function para gerar parcelas automaticamente
-- [ ] Criar index composto em `(user_id, date)`
-- [ ] Criar index em `category_id`
-- [ ] Criar index em `installment_group_id`
+- [x] Criar migration: tabela `transactions` (id, description, amount_cents, category_id, user_id, date, type: income/expense, is_installment, total_installments, current_installment, installment_group_id, receipt_id, created_at, updated_at)
+- [x] Criar RLS: usuário acessa suas transações + transações do parceiro
+- [x] Criar function para gerar parcelas automaticamente
+- [x] Criar index composto em `(user_id, date)`
+- [x] Criar index em `category_id`
+- [x] Criar index em `installment_group_id`
 
 ### Tabela `shopping_items` (Catálogo)
 
-- [ ] Criar migration: tabela `shopping_items` (id, name, category: açougue/hortifruti/mercado, unit_measure, user_id, created_at, updated_at)
-- [ ] Criar RLS: acesso casal
-- [ ] Criar index em `name` (busca)
-- [ ] Criar index em `user_id`
+- [x] Criar migration: tabela `shopping_items` (id, name, category: açougue/hortifruti/mercado, unit_measure, user_id, created_at, updated_at)
+- [x] Criar RLS: acesso casal
+- [x] Criar index em `name` (busca)
+- [x] Criar index em `user_id`
 
 ### Tabela `shopping_list` (Lista Ativa)
 
-- [ ] Criar migration: tabela `shopping_list` (id, item_id FK, quantity, unit_measure, status: pending/bought, added_by, created_at, updated_at)
-- [ ] Criar RLS: acesso casal
-- [ ] Criar index em `status`
+- [x] Criar migration: tabela `shopping_list` (id, item_id FK, quantity, unit_measure, status: pending/bought, added_by, created_at, updated_at)
+- [x] Criar RLS: acesso casal
+- [x] Criar index em `status`
 
 ### Tabela `price_history`
 
-- [ ] Criar migration: tabela `price_history` (id, item_id FK, price_cents, store_name, store_cnpj, date, receipt_id, created_at)
-- [ ] Criar RLS: acesso casal
-- [ ] Criar index composto em `(item_id, date)`
-- [ ] Criar view materializada ou function para "último preço" por item
+- [x] Criar migration: tabela `price_history` (id, item_id FK, price_cents, store_name, store_cnpj, date, receipt_id, created_at)
+- [x] Criar RLS: acesso casal
+- [x] Criar index composto em `(item_id, date)`
+- [x] Criar view materializada ou function para "último preço" por item
 
 ### Tabela `receipts` (Notas Fiscais)
 
-- [ ] Criar migration: tabela `receipts` (id, url, store_name, store_cnpj, total_cents, date, raw_data JSONB, user_id, created_at)
-- [ ] Criar RLS: acesso casal
+- [x] Criar migration: tabela `receipts` (id, url, store_name, store_cnpj, total_cents, date, raw_data JSONB, user_id, created_at)
+- [x] Criar RLS: acesso casal
 
 ---
 
@@ -419,8 +419,8 @@
 
 | Fase                          | Tarefas  | Status |
 | ----------------------------- | -------- | ------ |
-| 0 — Setup Inicial             | 25       | 🟡     |
-| 1 — Modelagem de Dados        | 25       | ⬜     |
+| 0 — Setup Inicial             | 25       | ✅     |
+| 1 — Modelagem de Dados        | 25       | ✅     |
 | 2 — Autenticação              | 18       | ⬜     |
 | 3 — RF01: Orçamento           | 25       | ⬜     |
 | 4 — RF02: Lista de Compras    | 22       | ⬜     |
