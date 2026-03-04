@@ -1,0 +1,6 @@
+-- Karen Finance — Seed Data
+--
+-- Default categories are seeded automatically via the handle_new_user() trigger
+-- when a new user signs up. See migration 20260304120100_categories.sql.
+--
+-- This file is intentionally minimal. Add test data here if needed for development.
