@@ -74,7 +74,7 @@ interface Transaction {
   category_id: string;
 }
 
-type TransactionType = 'income' | 'expense';
+type TransactionType = "income" | "expense";
 
 // ❌ Errado
 const data: any = await fetchData();
@@ -92,38 +92,38 @@ const data: any = await fetchData();
 
 ```typescript
 // Server Action — src/actions/transactions.ts
-'use server';
+"use server";
 
-import { z } from 'zod';
-import { createServerClient } from '@/lib/supabase/server';
-import { revalidatePath } from 'next/cache';
+import { z } from "zod";
+import { createServerClient } from "@/lib/supabase/server";
+import { revalidatePath } from "next/cache";
 
 const CreateTransactionSchema = z.object({
   description: z.string().min(1),
   amount_cents: z.number().int().positive(),
   category_id: z.string().uuid(),
   date: z.string().date(),
-  type: z.enum(['income', 'expense']),
+  type: z.enum(["income", "expense"]),
 });
 
 export async function createTransaction(formData: FormData) {
   const supabase = await createServerClient();
   const parsed = CreateTransactionSchema.safeParse({
-    description: formData.get('description'),
-    amount_cents: Number(formData.get('amount_cents')),
-    category_id: formData.get('category_id'),
-    date: formData.get('date'),
-    type: formData.get('type'),
+    description: formData.get("description"),
+    amount_cents: Number(formData.get("amount_cents")),
+    category_id: formData.get("category_id"),
+    date: formData.get("date"),
+    type: formData.get("type"),
   });
 
   if (!parsed.success) {
     return { error: parsed.error.flatten() };
   }
 
-  const { error } = await supabase.from('transactions').insert(parsed.data);
+  const { error } = await supabase.from("transactions").insert(parsed.data);
   if (error) return { error: error.message };
 
-  revalidatePath('/transactions');
+  revalidatePath("/transactions");
   return { success: true };
 }
 ```
@@ -181,11 +181,11 @@ export default Button;
 
 ```typescript
 // src/hooks/useTransactions.ts
-'use client';
+"use client";
 
-import { useStore } from '@/stores/transactions';
-import { createBrowserClient } from '@/lib/supabase/client';
-import { useEffect } from 'react';
+import { useStore } from "@/stores/transactions";
+import { createBrowserClient } from "@/lib/supabase/client";
+import { useEffect } from "react";
 
 export function useTransactions(month: string) {
   const { transactions, setTransactions } = useStore();
@@ -193,13 +193,15 @@ export function useTransactions(month: string) {
 
   useEffect(() => {
     const channel = supabase
-      .channel('transactions')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'transactions' }, () => {
+      .channel("transactions")
+      .on("postgres_changes", { event: "*", schema: "public", table: "transactions" }, () => {
         // Refetch on change
       })
       .subscribe();
 
-    return () => { supabase.removeChannel(channel); };
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, [supabase]);
 
   return { transactions };
@@ -239,13 +241,13 @@ const config = {
   theme: {
     extend: {
       colors: {
-        primary: { DEFAULT: '#6366f1', foreground: '#ffffff' },
-        secondary: { DEFAULT: '#f1f5f9', foreground: '#0f172a' },
-        destructive: { DEFAULT: '#ef4444', foreground: '#ffffff' },
-        accent: { DEFAULT: '#f1f5f9', foreground: '#0f172a' },
-        success: '#22c55e',
-        warning: '#f59e0b',
-        muted: { DEFAULT: '#f1f5f9', foreground: '#64748b' },
+        primary: { DEFAULT: "#6366f1", foreground: "#ffffff" },
+        secondary: { DEFAULT: "#f1f5f9", foreground: "#0f172a" },
+        destructive: { DEFAULT: "#ef4444", foreground: "#ffffff" },
+        accent: { DEFAULT: "#f1f5f9", foreground: "#0f172a" },
+        success: "#22c55e",
+        warning: "#f59e0b",
+        muted: { DEFAULT: "#f1f5f9", foreground: "#64748b" },
       },
     },
   },
@@ -263,9 +265,9 @@ const config = {
 ```typescript
 // src/lib/utils.ts
 export function formatCurrency(cents: number): string {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
   }).format(cents / 100);
 }
 
@@ -281,6 +283,7 @@ export function toCents(reais: number): number {
 Formato: `<tipo>(<escopo>): <descrição>`
 
 ### Tipos
+
 - `feat` — nova funcionalidade
 - `fix` — correção de bug
 - `chore` — tarefas de manutenção (deps, config)
@@ -291,6 +294,7 @@ Formato: `<tipo>(<escopo>): <descrição>`
 - `perf` — melhoria de performance
 
 ### Escopos
+
 - `auth` — autenticação
 - `budget` — orçamento/transações
 - `shopping` — lista de compras
@@ -308,26 +312,31 @@ Exemplo: `feat(shopping): adicionar botão "acabou" com último preço`
 ## Workflow MCP
 
 ### Após cada alteração de código:
+
 1. **`getDiagnostics` (IDE MCP)** — Verificar erros TypeScript e ESLint
 2. **Corrigir** qualquer erro antes de prosseguir
 
 ### Ao criar/modificar componentes visuais:
+
 1. **`take_snapshot` (chrome-devtools)** — Obter estado atual da UI (a11y tree)
 2. **`take_screenshot` (chrome-devtools)** — Capturar screenshot para validação visual
 3. **`list_console_messages` (chrome-devtools)** — Verificar erros no console
 
 ### Ao otimizar performance:
+
 1. **`performance_start_trace` (chrome-devtools)** — Iniciar gravação
 2. Navegar/interagir com a página
 3. **`performance_stop_trace` (chrome-devtools)** — Parar e analisar resultados
 4. Verificar LCP, CLS, INP
 
 ### Banco de dados (Supabase MCP):
+
 - Usar **Supabase MCP** para executar queries diretas e gerenciar tabelas
 - Verificar dados após migrations
 - Testar RLS policies com queries usando diferentes roles
 
 ### Deploy (Vercel MCP):
+
 - Usar **Vercel MCP** para gerenciar deployments
 - Verificar status de deploy após push
 
@@ -336,14 +345,17 @@ Exemplo: `feat(shopping): adicionar botão "acabou" com último preço`
 ## Plugins Claude Code
 
 ### `frontend-design`
+
 - **Quando usar:** ao criar qualquer componente visual, página ou formulário
 - Produz interfaces com alta qualidade visual, evitando estética genérica de AI
 
 ### `superpowers` (v4.3.1)
+
 - **Quando usar:** para TDD (escrever teste antes do código), debugging complexo, patterns comprovados
 - Skills: TDD, debugging avançado, collaboration patterns
 
 ### `context7`
+
 - **Quando usar:** antes de implementar qualquer feature, buscar documentação atualizada
 - Fontes: Next.js, Supabase, Tailwind CSS, Zustand, Zod, Recharts
 

@@ -107,30 +107,30 @@
 
 ### Páginas de Auth
 
-- [ ] Criar layout do grupo `(auth)` (centralizado, logo)
-- [ ] Criar página de Login (`/login`) com email/senha
-- [ ] Criar página de Cadastro (`/signup`) com display_name e salary
-- [ ] Criar página de Recuperação de Senha (`/forgot-password`)
-- [ ] Criar página de Reset de Senha (`/reset-password`)
-- [ ] Implementar Server Actions para login
-- [ ] Implementar Server Actions para signup
-- [ ] Implementar Server Actions para forgot-password
-- [ ] Implementar Server Actions para reset-password
-- [ ] Adicionar validação de formulários (Zod)
-- [ ] Adicionar feedback visual (loading, toast de erro/sucesso)
+- [x] Criar layout do grupo `(auth)` (centralizado, logo)
+- [x] Criar página de Login (`/login`) com email/senha
+- [x] Criar página de Cadastro (`/signup`) com display_name e salary
+- [x] Criar página de Recuperação de Senha (`/forgot-password`)
+- [x] Criar página de Reset de Senha (`/reset-password`)
+- [x] Implementar Server Actions para login
+- [x] Implementar Server Actions para signup
+- [x] Implementar Server Actions para forgot-password
+- [x] Implementar Server Actions para reset-password
+- [x] Adicionar validação de formulários (Zod)
+- [x] Adicionar feedback visual (loading, toast de erro/sucesso)
 
 ### Proteção de Rotas
 
-- [ ] Configurar middleware Next.js para proteger rotas `(app)`
-- [ ] Redirecionar não-autenticados para `/login`
-- [ ] Redirecionar autenticados de `/login` para `/dashboard`
+- [x] Configurar middleware Next.js para proteger rotas `(app)`
+- [x] Redirecionar não-autenticados para `/login`
+- [x] Redirecionar autenticados de `/login` para `/dashboard`
 
 ### Vinculação de Parceiro
 
-- [ ] Criar página/modal de vinculação de parceiro
-- [ ] Implementar lógica: gerar código de convite
-- [ ] Implementar lógica: aceitar convite e setar `partner_id` mútuo
-- [ ] Criar RPC no Supabase para vinculação atômica (transação)
+- [x] Criar página/modal de vinculação de parceiro
+- [x] Implementar lógica: gerar código de convite
+- [x] Implementar lógica: aceitar convite e setar `partner_id` mútuo
+- [x] Criar RPC no Supabase para vinculação atômica (transação)
 
 ---
 
@@ -421,7 +421,7 @@
 | ----------------------------- | -------- | ------ |
 | 0 — Setup Inicial             | 25       | ✅     |
 | 1 — Modelagem de Dados        | 25       | ✅     |
-| 2 — Autenticação              | 18       | ⬜     |
+| 2 — Autenticação              | 18       | ✅     |
 | 3 — RF01: Orçamento           | 25       | ⬜     |
 | 4 — RF02: Lista de Compras    | 22       | ⬜     |
 | 5 — RF03: QR Code NFC-e       | 22       | ⬜     |
