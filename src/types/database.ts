@@ -404,10 +404,6 @@ export type Database = {
       }
     }
     Functions: {
-      generate_invite_code: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
       generate_installments: {
         Args: {
           p_category_id: string
@@ -420,6 +416,7 @@ export type Database = {
         }
         Returns: string
       }
+      generate_invite_code: { Args: never; Returns: string }
       get_last_price: { Args: { p_item_id: string }; Returns: number }
       get_partner_id: { Args: { p_user_id: string }; Returns: string }
       link_partner: { Args: { p_invite_code: string }; Returns: undefined }
