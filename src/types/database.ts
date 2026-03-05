@@ -144,6 +144,7 @@ export type Database = {
           created_at: string
           display_name: string
           id: string
+          invite_code: string | null
           partner_id: string | null
           salary: number
           updated_at: string
@@ -153,6 +154,7 @@ export type Database = {
           created_at?: string
           display_name?: string
           id: string
+          invite_code?: string | null
           partner_id?: string | null
           salary?: number
           updated_at?: string
@@ -162,6 +164,7 @@ export type Database = {
           created_at?: string
           display_name?: string
           id?: string
+          invite_code?: string | null
           partner_id?: string | null
           salary?: number
           updated_at?: string
@@ -401,6 +404,10 @@ export type Database = {
       }
     }
     Functions: {
+      generate_invite_code: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
       generate_installments: {
         Args: {
           p_category_id: string
@@ -415,6 +422,7 @@ export type Database = {
       }
       get_last_price: { Args: { p_item_id: string }; Returns: number }
       get_partner_id: { Args: { p_user_id: string }; Returns: string }
+      link_partner: { Args: { p_invite_code: string }; Returns: undefined }
       seed_default_categories: {
         Args: { p_user_id: string }
         Returns: undefined
